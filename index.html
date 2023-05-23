@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Site</title>
+    <link rel="stylesheet" href="w3.css">
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            background-color: #DFDFDF;
+        }
+
+        .blue-accent {
+            color: rgba(1, 52, 112, 0.5);
+        }
+
+        .yellow-accent {
+            color: #FFC500;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 80px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background-color: #013470;
+            padding: 0 8px;
+        }
+
+        .logo {
+            max-height: 80px;
+            max-width: 240px; /* Add this */
+            width: auto;
+        }
+
+
+        .search-input {
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            flex-grow: 1;
+            margin-left: 2px;
+            height: 100%; /* Added to make the search bar fill the header vertically */
+            align-self: stretch; /* Added to make the search bar fill the header vertically */
+        }
+
+        .shopping-cart {
+            position: fixed;
+            top: 80px;
+            bottom: 0;
+            overflow-y: auto;
+            width: 250px;
+            left: 0;
+            background-color: #013470;
+        }
+
+        .shopping-cart {
+            left: 0;
+            background-color: #013470;
+        }
+
+        .cart-items-wrapper {
+            max-height: calc(100vh - 240px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-summary {
+            position: sticky;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 100%;
+        }
+
+        .cart-item {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 10px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .cart-item h4 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cart-item p {
+            font-size: 12px;
+            margin-bottom: 0;
+        }
+    
+        .side-menu {
+            right: 0;
+            width: 5%;
+            background-color: #013470;
+        }
+
+        .main-info {
+            padding-top: 80px;
+            padding-bottom: 20px;
+            padding-left: 1%; /* Add this */
+            margin-left: 250px; /* Remove the calc function */
+            margin-right: 5%;
+        }
+</style>    
+</head>
+<body>
+    <header class="w3-top w3-bar">
+        <img src="images/LOGO.png" alt="Logo" class="logo">
+        <input type="search" id="searchInput" placeholder="Search" class="search-input">
+    </header>
+
+    <div class="shopping-cart w3-padding w3-animate-left">
+        <h3 class="w3-center">Cart</h3>
+        <button id="clear-cart" class="w3-button w3-round w3-center">Clear</button>
+        <div class="cart-items-wrapper w3-margin-bottom">
+        </div>        
+        <div class="cart-summary w3-padding w3-border w3-border-grey w3-round">
+          <p class="w3-right"><strong>Total: $<span id="cart-total">0.00</span></strong></p>
+          <button id="checkout-button" class="w3-button w3-green w3-margin-top" onclick="showCheckoutForm()">Checkout</button>
+        </div>
+    </div>
+
+    <div class="side-menu w3-padding w3-animate-right">
+    </div>    
+
+    <!-- // this will display the cars from the JSON file  -->
+    <div id="car-container" class="main-info w3-animate-opacity"></div> 
+    
+    <script>
+
+        let cart = [];
+
+        async function loadCars() {
+            try {
+                const response = await fetch('cars.json');
+                const cars = await response.json();
+
+                let carContainer = document.getElementById('car-container');
+                carContainer.innerHTML = '';
+                
+                let carCount = 0;
+                let row = document.createElement('div');
+                row.className = 'w3-row';
+                
+                for (const car of cars) {
+                if (carCount % 3 === 0 && carCount > 0) {
+                    carContainer.appendChild(row);
+                    row = document.createElement('div');
+                    row.className = 'w3-row';
+                }
+
+                const carCard = `
+                    <div class="w3-col l4 m6 w3-margin-bottom">
+                        <div class="w3-card w3-padding w3-round ">
+                            <img src="images/${car.model.replace(/\s+/g, '_')}.jpg" alt="${car.model}" style="width:100%; height:auto">
+                            <h3 class="w3-center">${car.brand} ${car.model}</h3>
+                            <p><strong>Price/day:</strong> $${car.price_per_day}</p>
+                            <p><strong>Category:</strong> ${car.category}</p>
+                            <p><strong>Availability:</strong> ${car.availability}</p>
+                            <p><strong>Mileage:</strong> ${car.mileage}</p>
+                            <p><strong>Fuel:</strong> ${car.fuel}</p>
+                            <p><strong>Seats:</strong> ${car.seats}</p>
+                            <p><strong>Description:</strong> ${car.description}</p>
+                            <button class="add-to-cart w3-button ${
+                            car.availability === 'No' ? 'w3-disabled w3-grey' : 'w3-yellow'
+                            } w3-center" data-id="${car.id}" onclick="addToCart(${
+                            JSON.stringify(car)
+                            })">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                row.innerHTML += carCard;
+                carCount++;
+                }
+
+                carContainer.appendChild(row);
+            } catch (error) {
+                console.error('Error fetching car data:', error);
+            }
+        }
+
+        function displayCart() {
+            const cartItemsWrapper = document.querySelector(".cart-items-wrapper");
+            cartItemsWrapper.innerHTML = "";
+
+            let totalPrice = 0;
+
+            cart.forEach((item) => {
+            const cartItem = document.createElement("div");
+            cartItem.className = "cart-item";
+
+            cartItem.innerHTML = `
+                <h4>${item.name}</h4>
+                <p>Price/day: $${item.price}</p>
+            `;
+
+            cartItemsWrapper.appendChild(cartItem);
+            totalPrice += item.price;
+            });
+
+            document.getElementById("cart-total").textContent = totalPrice.toFixed(2);
+        }
+
+        function addToCart(car) {
+            const parsedCar = JSON.parse(car);
+
+            const newItem = {
+                id: parsedCar.id,
+                name: `${parsedCar.brand} ${parsedCar.model}`,
+                price: parsedCar.price_per_day,
+                count: 1,
+            };
+
+            cart.push(newItem);
+            displayCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+            addToCartButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const carId = button.getAttribute("data-id");
+
+                    fetch("cars.json")
+                        .then((response) => response.json())
+                        .then((cars) => {
+                            const car = cars.find((car) => car.id === carId);
+
+                            if (car) {
+                                addToCart(JSON.stringify(car));
+                            }
+                        });
+                });
+            });
+
+            loadCars().then(() => {
+                displayCart();
+            });
+        });
+                
+</script>
+</body>
+</html>
+            

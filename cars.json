@@ -1,0 +1,102 @@
+[
+    {
+      "category": "Cabriolet",
+      "availability": "No",
+      "brand": "Porsche",
+      "model": "718 Boxter",
+      "mileage": 37450,
+      "fuel": "Petrol",
+      "seats": 2,
+      "price_per_day": 550,
+      "description": "The 718 is a rear wheel drive 2 door with 2 seats, powered by a 2.0L TURBO 4 engine that has 220 kW of power (at 6500 rpm) and 380 Nm of torque (at 2150 rpm) via a Seven-speed Auto Dual Clutch."
+    },
+    {
+      "category": "Coupe",
+      "availability": "Yes",
+      "brand": "Porsche",
+      "model": "718 Cayman",
+      "mileage": 58900,
+      "fuel": "Petrol",
+      "seats": 2,
+      "price_per_day": 500,
+      "description": "The 718 Cayman is a rear wheel drive 2 door coupe with 2 seats, powered by a 2.0L turbocharged 4-cylinder engine producing 221 kW of power (at 6500 rpm) and 380 Nm of torque (at 2150 rpm) through a Seven-speed Auto Dual Clutch transmission."
+    },
+    {
+      "category": "Track Car",
+      "availability": "Yes",
+      "brand": "Porsche",
+      "model": "718 Cayman GT4",
+      "mileage": 4200,
+      "fuel": "Petrol (98 Only)",
+      "seats": 2,
+      "price_per_day": 1720,
+      "description": "The 718 Cayman GT4 is a track-focused rear wheel drive coupe with 2 seats, powered by a 4.0L flat-six engine producing 309 kW of power (at 7600 rpm) and 420 Nm of torque (at 5000 rpm) through a Six-speed Manual transmission."
+    },
+    {
+      "category": "Off-Road",
+      "availability": "No",
+      "brand": "Porsche",
+      "model": "911 Dakar",
+      "mileage": 13400,
+      "fuel": "Petrol (98 Only)",
+      "seats": 2,
+      "price_per_day": 1200,
+      "description": "The 911 Dakar is a unique off-road rally version of the 911 with 2 seats, powered by a 3.2L flat-six engine producing 167 kW of power and 276 Nm of torque through a Five-speed Manual transmission. It was designed for the grueling Paris-Dakar Rally."
+    },
+    {
+      "category": "Track Car",
+      "availability": "Yes",
+      "brand": "Porsche",
+      "model": "911 GT3 RS",
+      "mileage": 3900,
+      "fuel": "Petrol (98 Only)",
+      "seats": 2,
+      "price_per_day": 2900,
+      "description": "The 911 GT3 RS is a track-focused rear wheel drive sports car with 2 seats, powered by a 4.0L flat-six engine producing 383 kW of power (at 8250 rpm) and 470 Nm of torque (at 6000 rpm) through a Seven-speed Auto Dual Clutch transmission."
+    },
+    {
+      "category": "Convertible",
+      "availability": "Yes",
+      "brand": "Porsche",
+      "model": "911 Targa",
+      "mileage": 25300,
+      "fuel": "Petrol (98 Only)",
+      "seats": 4,
+      "price_per_day": 950,
+      "description": "The 911 Targa is a unique convertible rear wheel drive sports car with 4 seats, powered by a 3.0L twin-turbocharged flat-six engine producing 283 kW of power (at 6500 rpm) and 450 Nm of torque (at 1700 rpm) through a Seven-speed Auto Dual Clutch transmission. It features a distinctive removable roof section and wraparound rear window."
+      },
+      {
+      "category": "SUV",
+      "availability": "Yes",
+      "brand": "Porsche",
+      "model": "Cayenne",
+      "mileage": 61500,
+      "fuel": "Petrol",
+      "seats": 5,
+      "price_per_day": 400,
+      "description": "The Cayenne is a luxury SUV with 5 seats, powered by a 3.0L turbocharged V6 engine producing 250 kW of power (at 5300 rpm) and 450 Nm of torque (at 1340 rpm) through an Eight-speed Automatic transmission. It offers a spacious and comfortable ride, with impressive performance and handling for its size."
+      },
+      {
+      "category": "SUV",
+      "availability": "Yes",
+      "brand": "Porsche",
+      "model": "Macan",
+      "mileage": 39500,
+      "fuel": "Petrol",
+      "seats": 5,
+      "price_per_day": 350,
+      "description": "The Macan is a compact luxury SUV with 5 seats, powered by a 2.0L turbocharged inline-4 engine producing 185 kW of power (at 5000 rpm) and 370 Nm of torque (at 1600 rpm) through a Seven-speed Auto Dual Clutch transmission. It offers sporty handling and a premium cabin experience."
+      },
+      {
+      "category": "Electric",
+      "availability": "No",
+      "brand": "Porsche",
+      "model": "Taycan",
+      "mileage": 6800,
+      "fuel": "Electric",
+      "seats": 4,
+      "price_per_day": 600,
+      "description": "The Taycan is a fully electric sports sedan with 4 seats, powered by a dual-motor setup producing 390 kW of power and 640 Nm of torque through a Two-speed Automatic transmission. It offers a range of up to 322 miles (WLTP) on a single charge and can recharge up to 80% in just 22.5 minutes with fast-charging capabilities."
+      }
+      ]
+  
